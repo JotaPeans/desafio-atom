@@ -3,6 +3,7 @@
 import { Search as SearchIcon } from "lucide-react";
 import { white } from "tailwindcss/colors"
 import React, { useEffect, useState } from "react";
+import Input from "./Input";
 
 const Search = () => {
     const [ error, setError ] = useState<string | null>(null);
@@ -62,7 +63,7 @@ const Search = () => {
             role="buscar"
             className="relative flex items-center justify-center gap-3"
         >
-            <input type="text" name="search" placeholder="Buscar na página" className="w-full max-w-56 min-w-20 h-11 focus:outline-none focus:ring-2 transition-all ring-principal-light-purple bg-neutral-950/40 text-white box-border rounded-xl px-4"/>
+            <Input type="text" name="search" placeholder="Buscar na página" />
 
             <button  type="submit" className="min-w-11 min-h-11 rounded-xl bg-principal-light-purple">
                 <SearchIcon className="m-auto" strokeWidth={2.5} color={white}/>

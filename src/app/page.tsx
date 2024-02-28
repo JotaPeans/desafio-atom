@@ -1,56 +1,79 @@
-import BackToTop from "@/components/BackToTop";
-import Header from "@/components/Header";
-import InView from "@/components/InView";
-import Loading from "@/components/Loading";
-import Post from "@/components/Post";
+import BackToTop from "@/components/ui/BackToTop";
+import Article from "@/components/Article";
+import HeaderArticle from "@/components/HeaderArticle";
+import CreateArticle from "@/components/CreateArticle";
+import Logo from "@/components/Logo";
+import NavLink from "@/components/NavLink";
+import Search from "@/components/ui/Search";
 
-const App = () => {
+import { db } from "@/utils/database";
+import FinalSection from "@/components/FinalSection";
+
+const App = async () => {
+    const articles = await db.article.findMany({
+        take: 7,
+        orderBy: {
+            createdAt: "desc"
+        }
+    });
+
+    const headerArticle = articles[0];
+    const secondArticle = articles[1];
+    
     return (
         <>
-            <Header/>
+            <header className="w-full px-6 lg:px-32 py-16 bg-principal-purple flex flex-col gap-16 border-b-[6px] border-b-green-500">
+                <div className="relative flex w-full max-w-[1185px] mx-auto gap-10 items-center justify-center lg:justify-between bg-principal-purple">
+                    <Logo/>    
+
+                    <nav className="h-11 hidden lg:flex items-center ">
+                        <ul className="flex gap-6 font-medium text-white items-center justify-center">
+                            <li>
+                                <NavLink active href="#h">Home</NavLink>
+                            </li>
+                            <li>
+                                <NavLink href="#s">Sobre</NavLink>
+                            </li>
+                            <li>
+                                <NavLink href="#c">Categorias</NavLink>
+                            </li>
+                            <li>
+                                <NavLink href="#c2">Contato</NavLink>
+                            </li>
+                        </ul>
+                    </nav>
+
+                    <Search/>
+                </div>
+
+                {/* Usando o spread operator do obejto articles para atribuir automaticamente aos atributos do componente */}
+                <HeaderArticle { ...headerArticle }/>
+            </header>
+
+            <BackToTop/>
 
             <main className="flex-1 px-6 pt-8 py-14 lg:px-32">
                 <article className="flex flex-col gap-4 w-full max-w-[1185px] mx-auto">
-                    <section className="w-full flex items-start justify-between gap-32">
-                        <Post link="#" image="/code.jpg" date={new Date()} title="Começando no ReactJS em 2022">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nibh nibh eu in aliquet ut adipiscing neque. Sed volutpat aenean sit vitae, sed tristique nibh nibh eu in aliquet ut adipiscing neque. Sed volutpat aenean sit vitae, sed tristique. Sed volutpat aenean.
-                        </Post>
+                    <section className="w-full flex flex-col lg:flex-row items-start justify-between lg:gap-32">
+                        {/* Usando o spread operator do obejto articles para atribuir automaticamente aos atributos do componente */}
+                        <Article { ...secondArticle }/>
 
                         <div className="flex-1 divide-y-2">
-                            <Post link="#" date={new Date()} title="Conheça as principais técnicas para conseguir uma vaga internacional em programação">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nibh nibh eu in aliquet ut adipiscing neque. Sed volutpat aenean sit vitae, sed tristique.
-                            </Post>
-
-                            <Post link="#" date={new Date()} title="Veja a evolução do Front-end na prática">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nibh nibh eu in aliquet ut adipiscing neque. 
-                            </Post>
+                            {
+                                // Seleciona, do array de artigos, o terceiro e quarto para percorrer e retornar o componente dos artigos
+                                articles.slice(2, 4).map((article, key) => (
+                                    <Article key={key} {...article} disableImage/>
+                                ))
+                            }
                         </div>
                     </section>
 
-                    <section className="flex items-center justify-between gap-8 w-full">
-                        <Post link="#" image="https://img.freepik.com/fotos-gratis/negocios-conceito-de-entrevista-de-emprego_1421-77.jpg?w=1380&t=st=1709074549~exp=1709075149~hmac=cd6cd6f581f83fbadeedad7f9c6a1529e7a8749990d30555f89cddf888c4dacf" date={new Date()} title="10 dicas para conseguir a vaga desejada">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nibh nibh eu in aliquet ut adipiscing neque. Sed volutpat aenean sit vitae, sed tristique. 
-                        </Post>
-                        <Post link="#" image="/code.jpg" date={new Date()} title="Deixe seu código mais semântico com essas dicas">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nibh nibh eu in aliquet ut adipiscing neque. Sed volutpat aenean sit vitae, sed tristique.
-                        </Post>
-                        <Post link="#" image="https://img.freepik.com/free-vector/app-development-illustration_52683-47931.jpg?size=626&ext=jpg&ga=GA1.1.1222169770.1702425600&semt=ais" date={new Date()} title="Use essas dicas nas suas aplicações mobile">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nibh nibh eu in aliquet ut adipiscing neque. Sed volutpat aenean sit vitae, sed tristique.
-                        </Post>
-                    </section>
+                    <CreateArticle/>
+                    
+                    {/* Seleciona, do array de artigos, do quinto ao sétimo para percorrer e retornar o componente dos artigos */}
+                    <FinalSection data={articles.slice(4, 7)}/>
                 </article>
             </main>
-            
-            <footer className="flex-1 relative px-6 pb-14 lg:px-32">
-                <InView callback={async () => {
-                    "use server"
-                    console.log("oi")
-                }}>
-                    <Loading className="mx-auto"/>
-                </InView>
-                
-                <BackToTop/>
-            </footer>
         </>
     );
 }

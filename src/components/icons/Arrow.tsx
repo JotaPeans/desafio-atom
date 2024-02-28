@@ -1,4 +1,4 @@
-import { cn } from "@/utils/functionts";
+import { cn } from "@/utils/functions";
 import React from "react";
 
 interface ArrowProps {

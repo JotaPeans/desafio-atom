@@ -1,4 +1,4 @@
-import { cn } from "@/utils/functionts";
+import { cn } from "@/utils/functions";
 import { AnchorHTMLAttributes } from "react";
 
 interface NavLinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {

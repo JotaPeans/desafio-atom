@@ -28,10 +28,19 @@ const config: Config = {
           "10%, 90%": {
             opacity: "1"
           },
+        },
+        modal: {
+          "0%": {
+            opacity: "0",
+          },
+          "100%": {
+            opacity: "1",
+          }
         }
       },
       animation: {
-        error: "error 3s ease-in-out"
+        error: "error 3s ease-in-out",
+        modal: "modal 0.2s ease",
       }
     },
   },

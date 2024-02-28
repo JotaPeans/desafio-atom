@@ -17,7 +17,9 @@ const InView = ({ callback, children }: InViewProps) => {
     });
 
     useEffect(() => {
-        callback && callback();
+        if(inView) {
+            callback && callback();
+        }
     }, [inView]);
 
     return (
