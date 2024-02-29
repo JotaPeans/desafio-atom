@@ -20,7 +20,7 @@ export default async function CreateArticleAction(formData: FormData) {
             title,
             summary,
             imageUrl,
-            content: JSON.parse(content),
+            content: content,
             author: userId ?? v4()
         }
     });

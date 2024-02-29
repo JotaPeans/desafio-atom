@@ -1,12 +1,35 @@
 "use client"
 
+import Input from "@/components/ui/Input";
+
 import { Search as SearchIcon } from "lucide-react";
-import { white } from "tailwindcss/colors"
+import { white } from "tailwindcss/colors";
+
+import searchOnDB from "./action/searchOnDB";
+
 import React, { useEffect, useState } from "react";
-import Input from "./Input";
+import { useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
+
 
 const Search = () => {
     const [ error, setError ] = useState<string | null>(null);
+
+    const router = useRouter();
+    const searchParams = useSearchParams();
+
+    useEffect(() => {
+        // busca, no search params, o parametro de busca "search" que contem o termo de busca imposto na página "/"
+        const searchParamsTerm = searchParams.get("search");
+
+        if(searchParamsTerm) {
+            const form = new FormData();
+            form.append("search", searchParamsTerm);
+    
+            performSearch(form);
+        }
+    }, []);
+
 
     async function performSearch(formData: FormData) {
         const searchTerm = formData.get("search") as string;
@@ -17,6 +40,8 @@ const Search = () => {
         };
         
         const elements = document.querySelectorAll("p, a, h2, h3");
+        var finded = 0;
+
         elements.forEach(element => {
             // Pula o logo
             if(element.id === "logo") return;
@@ -41,15 +66,31 @@ const Search = () => {
                 
                 innerHTML = replacedHTML;
                 element.scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest" });
+                finded++;
             }
+
             
             // Repõe o svg de volta ao elemento após a busca
             svgContent.forEach((svg) => {
                 innerHTML += svg;
             });
-
+            
             element.innerHTML = innerHTML;
         });
+
+
+        if(finded === 0) {
+            const articleId = await searchOnDB(searchTerm);
+
+            if(articleId) {
+                const url = new URL("/article/" + articleId, window.location.origin);
+                url.searchParams.set("search", searchTerm);
+
+                console.log(url.toString())
+
+                router.push(url.toString())
+            }
+        }
     };
 
     useEffect(() => {

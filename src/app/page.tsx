@@ -3,7 +3,7 @@ import Article from "@/components/Article";
 import HeaderArticle from "@/components/HeaderArticle";
 import CreateArticle from "@/components/CreateArticle";
 import Logo from "@/components/Logo";
-import Search from "@/components/ui/Search";
+import Search from "@/components/Search";
 import FinalSection from "@/components/FinalSection";
 import Nav from "@/components/Nav";
 
@@ -43,11 +43,11 @@ const App = async () => {
                         {/* Usando o spread operator do obejto articles para atribuir automaticamente aos atributos do componente */}
                         <Article { ...secondArticle }/>
 
-                        <div className="flex-1 divide-y-2">
+                        <div className="flex-1 flex flex-row xl:flex-col flex-wrap xl:gap-0 divide-y-2">
                             {
                                 // Seleciona, do array dos artigos, o terceiro e quarto para percorrer e retornar o componente dos artigos
                                 articles.slice(2, 4).map((article, key) => (
-                                    <Article key={key} {...article} disableImage/>
+                                    <Article key={key} {...article} className="mx-4" disableImage/>
                                 ))
                             }
                         </div>

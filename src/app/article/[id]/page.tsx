@@ -2,9 +2,8 @@ import { ContentsProps } from "@/components/CreateArticle";
 import Logo from "@/components/Logo";
 import Nav from "@/components/Nav";
 import TiltAny from "@/components/TiltAny";
-import Search from "@/components/ui/Search";
+import Search from "@/components/Search";
 import { db } from "@/utils/database";
-import { Prisma } from "@prisma/client";
 import { redirect } from "next/navigation";
 
 interface ArticlePageProps {
@@ -25,7 +24,7 @@ const ArticlePage = async ({ params: { id } }: ArticlePageProps) => {
     // caso o artigo não seja encontrado, é redirecionado para a página principal;
     if(!article) redirect("/");
 
-    const articleContent = article.content as (ContentsProps[] | null);
+    const articleContent: ContentsProps[]| null = article.content ? JSON.parse(article.content) : null;
 
     return (
         <>

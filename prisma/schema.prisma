@@ -12,7 +12,7 @@ model Article {
   title     String
   imageUrl  String?
   summary   String
-  content   Json?
+  content   String?
   likes     Int      @default(0)
   author    String
   createdAt DateTime @default(now())
