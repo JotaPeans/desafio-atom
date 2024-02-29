@@ -1,7 +1,7 @@
 "use client"
 
 import { ReactNode, createContext, useEffect } from "react";
-import createCookie from "./createCookie";
+import createCookie from "@/utils/createCookie";
 
 interface AppProviderProps {
     uuid: string
