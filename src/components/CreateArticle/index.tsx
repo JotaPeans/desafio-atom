@@ -150,7 +150,7 @@ const CreateArticle = () => {
 
                     <h3 className="font-semibold text-xl text-center text-zinc-700">Adicionar Conteúdo</h3>
                     
-                    <div className="w-full flex flex-col gap-4 max-h-[512px] overflow-y-auto pr-4" ref={divOfContentsRef}>
+                    <div className="w-full flex flex-col gap-4 max-h-[336px] overflow-y-auto pr-4" ref={divOfContentsRef}>
                         {
                             contents.map((content, key) => (
                                 <div className="flex items-center w-full gap-2">
