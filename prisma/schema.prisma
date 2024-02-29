@@ -8,12 +8,12 @@ datasource db {
 }
 
 model Article {
-  id        Int      @id @default(autoincrement())
-  title     String
-  imageUrl  String?
-  summary   String
-  content   String?
-  likes     Int      @default(0)
-  author    String
-  createdAt DateTime @default(now())
+  id            Int      @id @default(autoincrement())
+  title         String
+  imageUrl      String?
+  summary       String
+  content       String?
+  likes         String[] 
+  author        String
+  createdAt     DateTime @default(now())
 }

@@ -13,6 +13,7 @@
     "@formkit/auto-animate": "^0.8.1",
     "@prisma/client": "^5.10.2",
     "clsx": "^2.1.0",
+    "lottie-react": "^2.4.0",
     "lucide-react": "^0.341.0",
     "next": "14.1.0",
     "react": "^18",

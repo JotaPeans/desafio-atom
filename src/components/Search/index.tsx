@@ -1,6 +1,7 @@
 "use client"
 
 import Input from "@/components/ui/Input";
+import Loading from "@/components/ui/Loading";
 
 import { Search as SearchIcon } from "lucide-react";
 import { white } from "tailwindcss/colors";
@@ -10,10 +11,12 @@ import searchOnDB from "./action/searchOnDB";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
+import SubmitForm from "../ui/SubmitForm";
 
 
 const Search = () => {
     const [ error, setError ] = useState<string | null>(null);
+    const [ loading, setLoading ] = useState(false);
 
     const router = useRouter();
     const searchParams = useSearchParams();
@@ -32,6 +35,7 @@ const Search = () => {
 
 
     async function performSearch(formData: FormData) {
+        setLoading(true);
         const searchTerm = formData.get("search") as string;
 
         if(searchTerm.trim() === "") {
@@ -39,7 +43,7 @@ const Search = () => {
             return;
         };
         
-        const elements = document.querySelectorAll("p, a, h2, h3");
+        const elements = document.querySelectorAll("p, a, h1, h2, h3");
         var finded = 0;
 
         elements.forEach(element => {
@@ -75,22 +79,27 @@ const Search = () => {
                 innerHTML += svg;
             });
             
+            // atribui ao elemento html o novo texto do html
             element.innerHTML = innerHTML;
         });
-
-
+        
+        
         if(finded === 0) {
+            // chama a server action para buscar pelo primeiro artigo que contenha o termo de busca em seu contúdo ou título e retorna o id do artigo encontrado
             const articleId = await searchOnDB(searchTerm);
-
+            
             if(articleId) {
+                // cria uma URL com o id do artigo
                 const url = new URL("/article/" + articleId, window.location.origin);
+                // Adiciona ao search params da url, o termo de busca
                 url.searchParams.set("search", searchTerm);
 
-                console.log(url.toString())
-
+                // redireciona para a url criada com o termo de busca
                 router.push(url.toString())
             }
         }
+
+        setLoading(false);
     };
 
     useEffect(() => {
@@ -106,9 +115,9 @@ const Search = () => {
         >
             <Input type="text" name="search" placeholder="Buscar na página" />
 
-            <button type="submit" aria-label="buscar" className="min-w-11 min-h-11 rounded-xl bg-principal-light-purple">
-                <SearchIcon className="m-auto" strokeWidth={2.5} color={white}/>
-            </button>
+            <SubmitForm className="bg-principal-light-purple hover:bg-principal-light-purple/80 min-w-11 min-h-11 p-0 flex items-center justify-center">
+                <SearchIcon strokeWidth={2.5} color={white}/>
+            </SubmitForm>
 
             <div data-active={Boolean(error)} className="h-[34px] min-w-[104px] opacity-0 data-[active=true]:animate-error transition-all absolute right-1/2 translate-x-1/2 -bottom-10 bg-red-300 text-red-600 py-1.5 px-3 rounded-xl font-medium text-sm">
                 <p>{ error }</p>
