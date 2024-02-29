@@ -5,6 +5,7 @@ import TiltAny from "@/components/TiltAny";
 import Search from "@/components/Search";
 import { db } from "@/utils/database";
 import { redirect } from "next/navigation";
+import Likes from "./components/Likes";
 
 interface ArticlePageProps {
     params: {
@@ -38,14 +39,14 @@ const ArticlePage = async ({ params: { id } }: ArticlePageProps) => {
                 </div>
             </header>
         
-            <main className="flex-1 px-6 pt-8 py-14 lg:px-32">
+            <main className="flex-1 px-6 pt-8 py-14 pb-20 lg:px-32">
                 <article className="flex flex-col gap-4 w-full max-w-[1185px] mx-auto">
                     <section aria-label="presentation" className="flex flex-col gap-10 w-full">
                         {
                             article.imageUrl && (
                                 <TiltAny tiltRotation={5} className="mx-auto">
-                                    <div className="rounded-xl overflow-hidden">
-                                        <img src={article.imageUrl} alt={article.title.substring(1, 20)} width={500} height={420} />
+                                    <div className="rounded-xl overflow-hidden max-h-[340px]">
+                                        <img src={article.imageUrl} alt={article.title.substring(1, 20)} width={500} height={340} />
                                     </div>
                                 </TiltAny>
                             )
@@ -63,6 +64,10 @@ const ArticlePage = async ({ params: { id } }: ArticlePageProps) => {
                             }
                         </div>
                     </section>
+                    
+                    <p className="font-Caveat font-semibold text-zinc-600 text-center mt-4">by: {article.author}</p>
+
+                    <Likes id={article.id} likes={article.likes}/>
                 </article>
             </main>
         </>

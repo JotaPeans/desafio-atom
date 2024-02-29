@@ -7,9 +7,9 @@ const HeaderArticle = ({ id, author, createdAt, imageUrl, likes, summary, title 
     return (
         <div aria-label="conteudo principal" className="w-full max-w-[1185px] mx-auto flex justify-between gap-8 lg:gap-32">
                 <div className="flex flex-col gap-6 text-justify my-auto">
-                    <h1 className="font-semibold text-4xl text-principal-light-purple">
+                    <a href={`/article/${id}`} className="font-semibold text-4xl text-principal-light-purple">
                         { title }
-                    </h1>
+                    </a>
                     <p className="font-medium text-lg text-white/80">{ summary }</p>
 
                     <a href={`/article/${id}`} className="group flex items-center justify-center gap-2 max-w-fit hover:text-purple-400/90 transition-all text-principal-light-purple font-semibold">

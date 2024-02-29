@@ -3,7 +3,6 @@
 import { Article as ArticleModel } from "@prisma/client";
 import { cn } from "@/utils/functions";
 import TiltAny from "@/components/TiltAny";
-import { Heart } from "lucide-react";
 import { useContext, useEffect, useRef, useState } from "react";
 import { appContext } from "@/app/AppProvider";
 import likeAnimation from "@/assets/likeAnimation.json";
@@ -23,11 +22,9 @@ const Article = ({ className, disableImage = false, author, createdAt, id, image
     const { uuid } = useContext(appContext);
     
     const [ likesData, setLikesData ] = useState(likes);
-    console.log("🚀 ~ Article ~ likesData:", likesData)
 
     // verifica no array de curtidas a presença do uuid do usuário atual e transforma em booleano
     const isLiked = Boolean(likesData.find(v => v.match(uuid)));
-
 
     useEffect(() => {
         if(isLiked) {
@@ -38,26 +35,26 @@ const Article = ({ className, disableImage = false, author, createdAt, id, image
     // faz a formatação do objeto Date
     const dateString = createdAt.toLocaleString("pt-br", { day: "2-digit", month: "long", year: "numeric" });
 
-    async function handleLikeClick() {
+    function handleLikeClick() {
+        let data = [...likesData];
+
         if(!isLiked) {
             lottieRef.current.playSegments([0, 90], true);
 
-            let data = likesData
             data.push(uuid);
 
             setLikesData(data);
-
-            await likeOrDislikeAction(id, "like");
+            
+            likeOrDislikeAction(id, "like");
         }
         else {
             lottieRef.current.playSegments([90, 0], true);
 
-            let userLikeIndex = likesData.findIndex(id => id === uuid);
-            likesData.splice(userLikeIndex, 1);
+            data.splice(data.findIndex(id => id === uuid), 1);
 
-            setLikesData(likesData);
+            setLikesData(data);
             
-            await likeOrDislikeAction(id, "dislike");
+            likeOrDislikeAction(id, "dislike");
         }
     }
 
@@ -79,23 +76,16 @@ const Article = ({ className, disableImage = false, author, createdAt, id, image
                 <p className="font-medium text-zinc-800 text-justify">{ summary }</p>
                 
                 <div className="ml-auto flex items-center text-sm font-semibold text-zinc-700">
-                    {/* <Heart
-                        size={16}
-                        strokeWidth={2.5}
-                        data-liked={isLiked}
-                        className="data-[liked=true]:fill-red-500 data-[liked=true]:text-red-500"
-                    /> */}
-
-                    <Lottie
-                        // onComplete={() => lottieRef.current.destroy()}
-                        onClick={handleLikeClick}
-                        lottieRef={lottieRef}
-                        className="w-12 cursor-pointer"
-                        animationData={likeAnimation}
-                        loop={false}
-                        autoplay={false}
-                    />
-                    <p>{likesData.length}</p>
+                    <button onClick={handleLikeClick} className="w-8 h-8 flex items-center justify-center overflow-hidden">
+                        <Lottie
+                            lottieRef={lottieRef}
+                            className="scale-[1.75]"
+                            animationData={likeAnimation}
+                            loop={false}
+                            autoplay={false}
+                        />
+                    </button>
+                    <p className="min-w-5 text-center">{likesData.length}</p>
                 </div>
             </div>
         </TiltAny>
