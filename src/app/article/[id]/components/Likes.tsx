@@ -20,7 +20,7 @@ const Likes = ({ id, likes }: LikesProps) => {
     const lottieRef = useRef<any>(null);
     
     // verifica no array de curtidas a presença do uuid do usuário atual e transforma em booleano
-    const isLiked = Boolean(likesData.find(v => v.match(uuid)));
+    const isLiked = Boolean(likesData?.find(v => v.match(uuid)));
 
     useEffect(() => {
         if(isLiked) {
@@ -72,7 +72,7 @@ const Likes = ({ id, likes }: LikesProps) => {
                     autoplay={false}
                 />
             </button>
-            <p className="min-w-5 text-center font-semibold text-zinc-700 text-xl">{likesData.length}</p>
+            <p className="min-w-5 text-center font-semibold text-zinc-700 text-xl">{likesData?.length}</p>
         </div>
     );
 }

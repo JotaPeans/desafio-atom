@@ -44,7 +44,10 @@ const App = async () => {
                 <article className="flex flex-col gap-4 w-full max-w-[1185px] mx-auto">
                     <section className="w-full flex flex-col lg:flex-row items-start justify-between lg:gap-32">
                         {/* Usando o spread operator do obejto articles para atribuir automaticamente aos atributos do componente */}
-                        <Article { ...secondArticle }/>
+                        {
+                            secondArticle && <Article { ...secondArticle }/>
+                        }
+                        
 
                         <div className="flex-1 flex flex-row xl:flex-col flex-wrap xl:gap-0 divide-y-2">
                             {

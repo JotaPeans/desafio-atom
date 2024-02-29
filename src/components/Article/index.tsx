@@ -24,7 +24,7 @@ const Article = ({ className, disableImage = false, author, createdAt, id, image
     const [ likesData, setLikesData ] = useState(likes);
 
     // verifica no array de curtidas a presença do uuid do usuário atual e transforma em booleano
-    const isLiked = Boolean(likesData.find(v => v.match(uuid)));
+    const isLiked = Boolean(likesData?.find(v => v.match(uuid)));
 
     useEffect(() => {
         if(isLiked) {
@@ -33,7 +33,7 @@ const Article = ({ className, disableImage = false, author, createdAt, id, image
     }, []);
 
     // faz a formatação do objeto Date
-    const dateString = createdAt.toLocaleString("pt-br", { day: "2-digit", month: "long", year: "numeric" });
+    const dateString = createdAt?.toLocaleString("pt-br", { day: "2-digit", month: "long", year: "numeric" });
 
     function handleLikeClick() {
         // usando o spread operator para copiar o estado likesData
@@ -94,7 +94,7 @@ const Article = ({ className, disableImage = false, author, createdAt, id, image
                             autoplay={false}
                         />
                     </button>
-                    <p className="min-w-5 text-center">{likesData.length}</p>
+                    <p className="min-w-5 text-center">{likesData?.length}</p>
                 </div>
             </div>
         </TiltAny>
