@@ -17,6 +17,7 @@ const InView = ({ callback, children }: InViewProps) => {
     });
 
     useEffect(() => {
+        // se o componente estiver sendo visualizado, chama função de callback.
         if(inView) {
             callback && callback();
         }

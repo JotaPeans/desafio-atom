@@ -1,6 +1,7 @@
 import { db } from "./database";
 import { v4 } from "uuid";
 
+// função para popular o banco de dados
 async function populateDatabase() {
     const titles = [
         "Use essas dicas nas suas aplicações mobile",

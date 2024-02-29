@@ -7,6 +7,7 @@ const Logo = () => {
     // Transforma a string em um array para torná-lo iterável para cada letra;
     const letters = Array.from("The Blog.");
 
+    // Cores que serão aplicadas no momento do hover da letra da logo.
     const colors = [ "#998FC7", "#D4C2FC", "#F9F9F9", "#FF3E41", "#92AD94", "#F8C630", "#0E4749"];
 
     const lettersRef = useRef<HTMLSpanElement[]>([]);

@@ -3,7 +3,6 @@
 import { cn } from "@/utils/functions";
 import { ReactElement, ReactNode, useEffect, useState } from "react";
 import { X } from "lucide-react";
-import { zinc } from "tailwindcss/colors";
 
 interface ModalProps {
     children?: ReactNode
@@ -30,6 +29,7 @@ const Modal = ({ children, triggerText, classNames, onOpenChange }: ModalProps) 
             document.getElementsByTagName("html")[0]?.classList.remove("overflow-hidden");
         }
 
+        // chama, se existir, algum callback quando o estado do modal muda.
         onOpenChange && onOpenChange();
     }, [show]);
 

@@ -10,6 +10,7 @@ import Nav from "@/components/Nav";
 import { db } from "@/utils/database";
 
 const App = async () => {
+    // pega 7 artigos do banco de dados e ordena de forma decrescente
     const articles = await db.article.findMany({
         take: 7,
         orderBy: {
@@ -17,7 +18,9 @@ const App = async () => {
         }
     });
 
+    // pega o primeiro artigo do array
     const headerArticle = articles[0];
+    // pega o segundo artigo do array
     const secondArticle = articles[1];
     
     return (

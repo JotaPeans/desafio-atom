@@ -40,6 +40,7 @@ const CreateArticle = () => {
 
     useEffect(() => {
         if(divOfContentsRef.current){
+            // faz a rolagem do scroll para acompanhar a criação de um novo parágrafo de conteúdo
             divOfContentsRef.current.scrollTo({
                 top: divOfContentsRef.current.scrollHeight,
                 behavior: "smooth", // Comportamento de rolagem suave
@@ -113,7 +114,7 @@ const CreateArticle = () => {
                 close: "absolute m-0 right-6 top-[34px]"
             }}
             onOpenChange={() => {
-                // reseta os fields do formulário toda vez que o modal é aberto ou fechado.
+                // reseta os fields do formulário e os conteúdos toda vez que o modal é aberto ou fechado.
                 formRef.current?.reset();
                 setProceed(false);
                 setContents([]);

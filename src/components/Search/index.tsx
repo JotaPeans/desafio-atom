@@ -16,7 +16,6 @@ import SubmitForm from "../ui/SubmitForm";
 
 const Search = () => {
     const [ error, setError ] = useState<string | null>(null);
-    const [ loading, setLoading ] = useState(false);
 
     const router = useRouter();
     const searchParams = useSearchParams();
@@ -35,7 +34,6 @@ const Search = () => {
 
 
     async function performSearch(formData: FormData) {
-        setLoading(true);
         const searchTerm = formData.get("search") as string;
 
         if(searchTerm.trim() === "") {
@@ -98,8 +96,6 @@ const Search = () => {
                 router.push(url.toString())
             }
         }
-
-        setLoading(false);
     };
 
     useEffect(() => {
@@ -115,7 +111,7 @@ const Search = () => {
         >
             <Input type="text" name="search" placeholder="Buscar na página" />
 
-            <SubmitForm className="bg-principal-light-purple hover:bg-principal-light-purple/80 min-w-11 min-h-11 p-0 flex items-center justify-center">
+            <SubmitForm aria-label="buscar" className="bg-principal-light-purple hover:bg-principal-light-purple/80 min-w-11 min-h-11 p-0 flex items-center justify-center">
                 <SearchIcon strokeWidth={2.5} color={white}/>
             </SubmitForm>
 

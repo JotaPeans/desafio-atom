@@ -36,24 +36,33 @@ const Article = ({ className, disableImage = false, author, createdAt, id, image
     const dateString = createdAt.toLocaleString("pt-br", { day: "2-digit", month: "long", year: "numeric" });
 
     function handleLikeClick() {
+        // usando o spread operator para copiar o estado likesData
         let data = [...likesData];
 
         if(!isLiked) {
+            // da o play na animação somente do frame 0 ao frame 90
             lottieRef.current.playSegments([0, 90], true);
 
+            // adiciona ao array data o uuid do usuário
             data.push(uuid);
 
+            // seta o novo array de uuid de usuários que curtiram o artigo
             setLikesData(data);
             
+            // chama a server action para registrar no banco de dados o array de uuid de usuários que curtiram o artigo
             likeOrDislikeAction(id, "like");
         }
         else {
+            // da o play na animação somente do frame 0 ao frame 90
             lottieRef.current.playSegments([90, 0], true);
 
+            // remove, do array de uuid de usuários que curtiram o artigo encontrado pelo indice, o uuid do usuário atual
             data.splice(data.findIndex(id => id === uuid), 1);
 
+            // seta o novo array de uuid de usuários que curtiram o artigo
             setLikesData(data);
             
+            // chama a server action para registrar no banco de dados o array de uuid de usuários que curtiram o artigo
             likeOrDislikeAction(id, "dislike");
         }
     }
@@ -76,7 +85,7 @@ const Article = ({ className, disableImage = false, author, createdAt, id, image
                 <p className="font-medium text-zinc-800 text-justify">{ summary }</p>
                 
                 <div className="ml-auto flex items-center text-sm font-semibold text-zinc-700">
-                    <button onClick={handleLikeClick} className="w-8 h-8 flex items-center justify-center overflow-hidden">
+                    <button aria-label={"curtir " + id} onClick={handleLikeClick} className="w-8 h-8 flex items-center justify-center overflow-hidden">
                         <Lottie
                             lottieRef={lottieRef}
                             className="scale-[1.75]"
