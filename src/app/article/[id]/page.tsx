@@ -65,7 +65,7 @@ const ArticlePage = async ({ params: { id } }: ArticlePageProps) => {
                         </div>
                     </section>
                     
-                    <p className="font-Caveat font-semibold text-zinc-600 text-center mt-4">by: {article.author}</p>
+                    <p className="font-Caveat font-semibold text-zinc-600 text-center mt-4 text-lg">by: {article.author}</p>
 
                     <Likes id={article.id} likes={article.likes}/>
                 </article>

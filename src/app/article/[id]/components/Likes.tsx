@@ -56,13 +56,13 @@ const Likes = ({ id, likes }: LikesProps) => {
             <button onClick={handleLikeClick} className="w-11 h-11 flex items-center justify-center overflow-hidden">
                 <Lottie
                     lottieRef={lottieRef}
-                    className="scale-[1.75]"
+                    className="scale-[1.65]"
                     animationData={likeAnimation}
                     loop={false}
                     autoplay={false}
                 />
             </button>
-            <p className="min-w-5 text-center text-lg">{likesData.length}</p>
+            <p className="min-w-5 text-center font-semibold text-zinc-700 text-xl">{likesData.length}</p>
         </div>
     );
 }
