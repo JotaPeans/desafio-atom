@@ -26,7 +26,7 @@ const config: Config = {
             opacity: "0"
           },
           "10%, 90%": {
-            opacity: "1"
+            opacity: "100%"
           },
         },
         modal: {

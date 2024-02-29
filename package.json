@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "populate": "npx prisma generate && npx prisma db push && npx tsx ./src/utils/init.dev.ts",
-    "dev": "npx prisma generate && next dev",
-    "build": "npx prisma generate && npx prisma db push && npx tsx ./src/utils/init.dev.ts && next build",
+    "dev": "npx prisma generate && npx prisma db push && next dev",
+    "build": "npx prisma generate && npx prisma db push && next build",
     "start": "next start",
     "lint": "next lint"
   },
@@ -20,7 +20,8 @@
     "react-tilt": "^1.0.2",
     "tailwind-merge": "^2.2.1",
     "tsx": "^4.7.1",
-    "uuid": "^9.0.1"
+    "uuid": "^9.0.1",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@types/node": "^20",

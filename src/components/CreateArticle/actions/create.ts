@@ -7,8 +7,8 @@ import { v4 } from "uuid";
 
 export default async function CreateArticleAction(formData: FormData) {
     const userId = getUser();
-    console.log("🚀 ~ CreateArticleAction ~ userId:", userId)
     
+    // pega os dados dos formulário
     const imageUrl = formData.get("image") as string;
     const title = formData.get("title") as string;
     const summary = formData.get("summary") as string;
@@ -22,6 +22,7 @@ export default async function CreateArticleAction(formData: FormData) {
         }
     });
 
+    // revalida o cache da pagina
     revalidatePath("/");
     
     return;

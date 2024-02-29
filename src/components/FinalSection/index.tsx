@@ -13,6 +13,7 @@ interface FinalSectionProps {
 
 const FinalSection = ({ data }: FinalSectionProps) => {
     const [ articles, setArticles ] = useState(data);
+    const [ stillHas, setStillHas ] = useState(true);
 
     async function handleInView() {
         // pega o artigo na última posição do array
@@ -22,6 +23,12 @@ const FinalSection = ({ data }: FinalSectionProps) => {
             const cursor = lastArticle.id;
             // Chama a server action responsável por buscar por mais artigos no banco de dados.
             const paginatedArticles = await getMoreArticles(cursor);
+
+            // Se não ha mais artigos para buscar, o loading é escondido!
+            if(paginatedArticles.length === 0) {
+                setStillHas(false);
+                return;
+            };
 
             // Uso do spread operator para copiar os artigos dos estado.
             let currentArticles = [ ...articles ];
@@ -44,9 +51,13 @@ const FinalSection = ({ data }: FinalSectionProps) => {
             </div>
             
             {/* Verifica se o componente de loading está em tela, se estiver, chama a função handleInView que aciona uma server action para procurar por mais artigos no banco de dados. Isso é interessante para fazer uma paginação com scroll infinito */}
-            <InView callback={handleInView}>
-                <Loading className="mx-auto"/>
-            </InView>
+            {
+                stillHas && (
+                    <InView callback={handleInView}>
+                        <Loading className="mx-auto"/>
+                    </InView>
+                )
+            }
         </section>
     );
 }

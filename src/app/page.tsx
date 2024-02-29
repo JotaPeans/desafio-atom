@@ -3,11 +3,11 @@ import Article from "@/components/Article";
 import HeaderArticle from "@/components/HeaderArticle";
 import CreateArticle from "@/components/CreateArticle";
 import Logo from "@/components/Logo";
-import NavLink from "@/components/NavLink";
 import Search from "@/components/ui/Search";
+import FinalSection from "@/components/FinalSection";
+import Nav from "@/components/Nav";
 
 import { db } from "@/utils/database";
-import FinalSection from "@/components/FinalSection";
 
 const App = async () => {
     const articles = await db.article.findMany({
@@ -26,22 +26,7 @@ const App = async () => {
                 <div className="relative flex w-full max-w-[1185px] mx-auto gap-10 items-center justify-center lg:justify-between bg-principal-purple">
                     <Logo/>    
 
-                    <nav className="h-11 hidden lg:flex items-center ">
-                        <ul className="flex gap-6 font-medium text-white items-center justify-center">
-                            <li>
-                                <NavLink active href="#h">Home</NavLink>
-                            </li>
-                            <li>
-                                <NavLink href="#s">Sobre</NavLink>
-                            </li>
-                            <li>
-                                <NavLink href="#c">Categorias</NavLink>
-                            </li>
-                            <li>
-                                <NavLink href="#c2">Contato</NavLink>
-                            </li>
-                        </ul>
-                    </nav>
+                    <Nav/>
 
                     <Search/>
                 </div>
@@ -60,7 +45,7 @@ const App = async () => {
 
                         <div className="flex-1 divide-y-2">
                             {
-                                // Seleciona, do array de artigos, o terceiro e quarto para percorrer e retornar o componente dos artigos
+                                // Seleciona, do array dos artigos, o terceiro e quarto para percorrer e retornar o componente dos artigos
                                 articles.slice(2, 4).map((article, key) => (
                                     <Article key={key} {...article} disableImage/>
                                 ))
