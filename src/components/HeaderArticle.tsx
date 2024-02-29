@@ -12,7 +12,7 @@ const HeaderArticle = ({ id, author, createdAt, imageUrl, likes, summary, title 
                     </h2>
                     <p className="font-medium text-lg text-white/80">{ summary }</p>
 
-                    <a target="_blank" href={`/article/${id}`} className="group flex items-center justify-center gap-2 max-w-fit hover:text-purple-400/90 transition-all text-principal-light-purple font-semibold">
+                    <a href={`/article/${id}`} className="group flex items-center justify-center gap-2 max-w-fit hover:text-purple-400/90 transition-all text-principal-light-purple font-semibold">
                         Veja mais <ArrowRight color={green[500]} strokeWidth={2.5} size={18} className="group-hover:translate-x-2 transition-all"/>
                     </a>
                 </div>

@@ -24,7 +24,7 @@ const Article = ({ className, disableImage = false, author, createdAt, id, image
 
                 <p className="font-semibold text-sm text-zinc-500">{ dateString }</p>
 
-                <a target="_blank" href={`/article/${id}`} className="text-2xl font-semibold text-principal-purple hover:text-principal-purple/80 transition-all">{ title }</a>
+                <a href={`/article/${id}`} className="text-2xl font-semibold text-principal-purple hover:text-principal-purple/80 transition-all">{ title }</a>
 
                 <p className="font-medium text-zinc-800 text-justify">{ summary }</p>
             </div>

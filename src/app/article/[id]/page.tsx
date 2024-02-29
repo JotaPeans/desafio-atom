@@ -54,15 +54,11 @@ const ArticlePage = async ({ params: { id } }: ArticlePageProps) => {
 
                         <h1 className="text-center font-semibold text-2xl text-purple-950">{ article.title }</h1>
                         
-                        <div className="prose mx-auto w-full">
+                        <div className="prose text-justify mx-auto w-full">
                             {
                                 articleContent && articleContent.map((content, key) => (
                                     <>
-                                        {
-                                            content.type === "p" && (
-                                                <p key={key}>{content.value}</p>
-                                            )
-                                        }
+                                        { content.type === "p" && <p key={key}>{content.value}</p> }
                                     </>
                                 ))
                             }

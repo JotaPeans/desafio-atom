@@ -40,6 +40,7 @@ const Search = () => {
                 const replacedHTML = innerHTML.replace(new RegExp(searchTerm, "gi"), match => `<span class="highlight">${match}</span>`);
                 
                 innerHTML = replacedHTML;
+                element.scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest" });
             }
             
             // Repõe o svg de volta ao elemento após a busca
