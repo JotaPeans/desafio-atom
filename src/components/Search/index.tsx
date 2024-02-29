@@ -48,7 +48,6 @@ const Search = () => {
             // Pula o logo
             if(element.id === "logo") return;
 
-            // Verifica se o conteúdo do elemento HTML corresponde ao termo de pesquisa
             let innerHTML = element.innerHTML;
 
             // Verifica a existência de algum <svg></svg> dentro do elemento para guardar, retirar e fazer a busca
@@ -67,6 +66,8 @@ const Search = () => {
                 const replacedHTML = innerHTML.replace(new RegExp(searchTerm, "gi"), match => `<span class="highlight">${match}</span>`);
                 
                 innerHTML = replacedHTML;
+                
+                // faz o rolamento do scroll para o elemento que foi achado pela busca
                 element.scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest" });
                 finded++;
             }
