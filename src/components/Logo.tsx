@@ -19,7 +19,7 @@ const Logo = () => {
 
     return (
         <div className="relative ">
-            <div className="absolute w-32 h-12 left-36 -top-12 flex items-center gap-2 -rotate-12">
+            <div className="hidden absolute w-32 h-12 left-36 -top-12 lg:flex items-center gap-2 -rotate-12">
                 <Arrow className="rotate-90 fill-white/30 h-3/4"/>
                 <p aria-label="hover logo" className="font-semibold text-white/30 text-xs -translate-y-2">Hover me!</p>
             </div>
