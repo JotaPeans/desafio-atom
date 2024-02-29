@@ -1,17 +1,7 @@
-"use client"
-
 import { ArrowRight } from "lucide-react";
 import { green } from "tailwindcss/colors";
 import { ArticleProps } from "./Article";
-import { Tilt } from "react-tilt";
-
-const defaultTiltOptions = {
-	reverse:        false,
-	max:            15,     // tilt rotation (em graus º)
-	perspective:    2000,
-	scale:          1,
-	reset:          true,    // Reseta as transformações do componente quando o mouse sair.
-}
+import TiltAny from "./TiltAny";
 
 const HeaderArticle = ({ id, author, createdAt, imageUrl, likes, summary, title }: ArticleProps) => {
     return (
@@ -27,7 +17,7 @@ const HeaderArticle = ({ id, author, createdAt, imageUrl, likes, summary, title 
                     </a>
                 </div>
 
-                <Tilt options={defaultTiltOptions}>
+                <TiltAny>
                     {
                         imageUrl && (
                             <div className=" rounded-xl overflow-hidden hidden lg:block w-full xl:min-w-[570px] xl:max-w-min max-h-96">
@@ -35,7 +25,7 @@ const HeaderArticle = ({ id, author, createdAt, imageUrl, likes, summary, title 
                             </div>
                         )
                     }
-                </Tilt>
+                </TiltAny>
             </div>
     );
 }

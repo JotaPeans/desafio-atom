@@ -22,7 +22,12 @@ const Modal = ({ children, triggerText, classNames, onOpenChange }: ModalProps) 
 
     useEffect(() => {
         // esconde todos os elementos da tela para desabilitar o scroll da página enquanto o modal estiver aberto.
-        document.getElementsByTagName("html")[0]?.classList.toggle("overflow-hidden");
+        if(show) {
+            document.getElementsByTagName("html")[0]?.classList.add("overflow-hidden");
+        }
+        else {
+            document.getElementsByTagName("html")[0]?.classList.remove("overflow-hidden");
+        }
 
         onOpenChange && onOpenChange();
     }, [show]);
@@ -31,10 +36,10 @@ const Modal = ({ children, triggerText, classNames, onOpenChange }: ModalProps) 
         <>
             <div
                 data-show={show}
-                className={cn("group fixed top-0 left-0 z-50 w-full min-h-screen data-[show=false]:opacity-0 data-[show=false]:pointer-events-none transition-all data-[show=true]:opacity-1 bg-black/50 tranl", classNames?.root)}
+                className={cn("group/modal fixed top-0 left-0 z-50 w-full min-h-screen data-[show=false]:opacity-0 data-[show=false]:pointer-events-none transition-all data-[show=true]:opacity-1 bg-black/50", classNames?.root)}
             >
                 <div
-                    className={cn("absolute group-data-[show=true]:animate-modal left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-[90%] md:w-[600px] min-h-96 h-auto bg-zinc-100 rounded-lg flex flex-col p-2 transition-all", classNames?.content)}
+                    className={cn("absolute group-data-[show=true]/modal:animate-modal left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-[90%] md:w-[600px] min-h-96 h-auto bg-zinc-100 rounded-lg flex flex-col p-2 transition-all overflow-hidden", classNames?.content)}
                 >
                     <button className="ml-auto" onClick={() => setShow(false)}>
                         <X size={18} strokeWidth={2.8} color={zinc[600]}/>

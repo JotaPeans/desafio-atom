@@ -24,7 +24,7 @@ const Logo = () => {
                 <p aria-label="hover logo" className="font-semibold text-white/30 text-xs -translate-y-2">Hover me!</p>
             </div>
             
-            <a href="" id="logo" className="tracking-wider font-bold text-4xl select-none text-white flex max-w-fit">
+            <a href="/" id="logo" className="tracking-wider font-bold text-4xl select-none text-white flex max-w-fit">
 
                 {
                     letters.map((letter, key) => (
