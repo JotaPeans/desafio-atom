@@ -41,7 +41,7 @@ const Modal = ({ children, triggerText, classNames, onOpenChange }: ModalProps) 
                 <div
                     className={cn("absolute group-data-[show=true]/modal:animate-modal left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-[90%] md:w-[600px] min-h-96 h-auto bg-zinc-100 rounded-lg flex flex-col p-2 transition-all overflow-hidden", classNames?.content)}
                 >
-                    <button className="ml-auto" onClick={() => setShow(false)}>
+                    <button aria-label="fechar modal" className="ml-auto" onClick={() => setShow(false)}>
                         <X size={18} strokeWidth={2.8} color={zinc[600]}/>
                     </button>
 

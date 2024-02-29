@@ -61,12 +61,11 @@ const Search = () => {
     return (
         <form
             action={performSearch}
-            role="buscar"
             className="relative flex items-center justify-center gap-3"
         >
             <Input type="text" name="search" placeholder="Buscar na página" />
 
-            <button  type="submit" className="min-w-11 min-h-11 rounded-xl bg-principal-light-purple">
+            <button type="submit" aria-label="buscar" className="min-w-11 min-h-11 rounded-xl bg-principal-light-purple">
                 <SearchIcon className="m-auto" strokeWidth={2.5} color={white}/>
             </button>
 

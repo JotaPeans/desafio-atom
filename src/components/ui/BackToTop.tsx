@@ -16,7 +16,7 @@ const BackToTop = () => {
     }, []);
 
     return (
-        <a href="#" data-show={show} className="fixed data-[show=false]:opacity-0 data-[show=true]:opacity-1 bottom-4 bg-principal-purple/80 hover:bg-principal-purple/90 transition-all p-2 rounded-full right-4">
+        <a href="#" aria-label="voltar ao topo" data-show={show} className="fixed data-[show=false]:opacity-0 data-[show=true]:opacity-1 bottom-4 bg-principal-purple/80 hover:bg-principal-purple/90 transition-all p-2 rounded-full right-4">
             <ArrowUp size={20} color={white} strokeWidth={2.5}/>
         </a>
     );

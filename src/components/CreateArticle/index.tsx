@@ -109,10 +109,10 @@ const CreateArticle = () => {
                     <label htmlFor="imageUrl" className="text-sm font-medium text-zinc-700">Url da imagem</label>
                     <Input id="imageUrl" name="image" placeholder="Url da imagem" className="bg-zinc-300 placeholder-zinc-600 text-zinc-900 focus:ring-0 w-full max-w-none"/>
 
-                    <label aria-required="true" htmlFor="title" className="text-sm font-medium text-zinc-700">Título do artigo</label>
+                    <label htmlFor="title" className="text-sm font-medium text-zinc-700">Título do artigo</label>
                     <Input ref={titleRef} required id="title" name="title" placeholder="Título do artigo" className="bg-zinc-300 placeholder-zinc-600 text-zinc-900 focus:ring-0 w-full max-w-none"/>
 
-                    <label aria-required="true" htmlFor="summary" className="text-sm font-medium text-zinc-700 mt-2">Resumo do artigo</label>
+                    <label htmlFor="summary" className="text-sm font-medium text-zinc-700 mt-2">Resumo do artigo</label>
                     <TextArea ref={summaryRef} required id="summary" name="summary" placeholder="Resumo do artigo" className="bg-zinc-300 placeholder-zinc-600 text-zinc-900 focus:ring-0 min-h-40"/>
 
                     <button type="button" className="group px-6 py-2 h-10 font-medium rounded-xl flex items-center justify-center gap-2 bg-principal-purple/90 hover:bg-principal-purple/80 transition-all text-white mt-2" onClick={verifyProceed}>
